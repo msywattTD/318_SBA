@@ -12,23 +12,17 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-app.use(consoleLogger);
+// app.use(consoleLogger);
 
 //ROUTES-----------------------------------------------------------
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 
-//THREADS ----------
-//gets all threads
-app.get("/threads", async (req, res) => {
-  return res.json(threads);
-});
+const threadsRouter = require("./routes/threads");
+app.use("/threads", threadsRouter);
 
-//COMMENTS ---------
-//gets all comments
-app.get("/comments", async (req, res) => {
-  return res.json(comments);
-});
+const commentsRouter = require("./routes/comments");
+app.use("/comments", commentsRouter);
 
 //GLOBAL ERROR HANDLE----------------------------------------------
 
